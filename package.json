@@ -1,0 +1,39 @@
+{
+  "name": "devdesk",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k 'npm run dev -w apps/api' 'npm run dev -w apps/web'",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces && tsc -p tsconfig.tools.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "db:generate": "npm exec -w apps/api -- prisma generate",
+    "db:migrate": "npm exec -w apps/api -- prisma migrate deploy",
+    "db:seed": "npm run seed -w apps/api --",
+    "start:render": "npm run db:migrate && if [ \"$DEMO_VIEW\" = true ]; then npm run db:seed -- --public-demo; fi && npm run start -w apps/api",
+    "db:user": "npm exec -w apps/api -- tsx src/provision.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^22.0.0",
+    "@types/supertest": "^6.0.0",
+    "concurrently": "^9.0.0",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.6.0",
+    "supertest": "^7.1.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^5.1.1"
+  }
+}

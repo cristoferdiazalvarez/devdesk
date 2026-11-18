@@ -1,0 +1,30 @@
+{
+  "name": "@devdesk/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "prisma generate && tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/server.js",
+    "seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.10.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "zod": "^4.1.0",
+    "@prisma/adapter-pg": "^7.10.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "prisma": "^7.10.1",
+    "tsx": "^4.20.0"
+  }
+}
