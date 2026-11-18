@@ -9,7 +9,7 @@
 ## Configuración y restauración
 
 1. Usa una base PostgreSQL dedicada exclusivamente a la demo. Guarda la conexión en `DATABASE_URL` mediante la configuración privada de Render. En Neon usa la conexión directa con TLS para el arranque y las migraciones.
-2. Configura `WEB_ORIGIN` con el origen HTTPS exacto de Vercel y `DEVDESK_API_ORIGIN` en Vercel con el origen HTTPS del servicio de Render. Activa `DEMO_VIEW=true` y configura `ALLOW_REGISTRATION=false` en Render.
+2. Configura `WEB_ORIGIN` con el origen HTTPS exacto de Vercel y comprueba que la reescritura de API en `vercel.json` apunta al origen HTTPS del servicio de Render. Activa `DEMO_VIEW=true` y configura `ALLOW_REGISTRATION=false` en Render.
 3. El comando `npm run start:render` aplica las migraciones y crea los datos ficticios. El público accede con un perfil virtual de solo lectura. Las cuentas con contraseña conocida solo se usan en local. En la base pública se generan contraseñas aleatorias y se bloquean login, registro, escrituras y notas internas.
 4. Para una restauración completa, provisiona una base vacía y gratuita para la demo, actualiza el secreto `DATABASE_URL` y reinicia el servicio. El arranque reconstruye el estado inicial. Reiniciar sobre la misma base recupera los registros ficticios ausentes y conserva los existentes. Mantén la base anterior hasta comprobar la nueva.
 

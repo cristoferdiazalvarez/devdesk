@@ -68,7 +68,6 @@ La demo pública usa una base exclusiva y `DEMO_VIEW=true`. El inicio carga dato
 | `ALLOW_REGISTRATION`  | Habilita registro como cliente. Por defecto está apagado en producción        |
 | `TRUST_PROXY_HOPS`    | Saltos de proxy confiables para los límites por IP. Local `0`                 |
 | `DEMO_VIEW`           | Activa la demo pública de solo lectura                                        |
-| `DEVDESK_API_ORIGIN`  | URL HTTPS pública de Render en la configuración de Vercel                     |
 | `POSTGRES_PASSWORD`   | Contraseña de la instancia local de Compose                                   |
 | `LOCAL_DEMO_PASSWORD` | Contraseña local compartida por los usuarios ficticios y usada por Playwright |
 | `TEST_DATABASE_URL`   | Base dedicada ya migrada para integración                                     |
@@ -99,7 +98,7 @@ Consulta [el contrato de la API](docs/api.md).
 ## Despliegue preparado
 
 1. Una vez autorizado el despliegue, usa `render.yaml` en un Blueprint de Render para crear el servicio web y PostgreSQL en modalidad gratuita. Configura `WEB_ORIGIN` con el origen HTTPS previsto para Vercel. Render ejecuta la migración al iniciar y genera los datos ficticios de la demo. [Referencia del Blueprint](https://render.com/docs/blueprint-spec)
-2. En Vercel, deja la raíz del proyecto en la raíz del monorepo, selecciona Node.js 22 y configura `DEVDESK_API_ORIGIN` con el origen HTTPS de Render. `vercel.ts` compila la web y configura las reescrituras. [Configuración de Vercel](https://vercel.com/docs/project-configuration/vercel-ts)
+2. En Vercel, deja la raíz del proyecto en la raíz del monorepo, selecciona Node.js 22 y verifica que `vercel.json` apunta al origen HTTPS del servicio Render. El archivo compila la web y configura las reescrituras. [Configuración de Vercel](https://vercel.com/docs/project-configuration/vercel-json)
 3. Comprueba desde el origen final la salud, la lista, el detalle y el bloqueo de escrituras. Para una instalación privada aparte, usa una base propia, desactiva `DEMO_VIEW`, crea los usuarios de soporte con el comando siguiente y habilita registro solo si corresponde.
 
 Consulta [los límites de los planes gratuitos, la restauración y las verificaciones de publicación](docs/publicacion.md).

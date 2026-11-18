@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["tests", "playwright.config.ts", "vitest.config.ts", "vercel.ts"]
+  "include": ["tests", "playwright.config.ts", "vitest.config.ts"]
 }
